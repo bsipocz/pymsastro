@@ -50,3 +50,7 @@ distribute-*.tar.gz
 
 # Mac OSX
 .DS_Store
+
+# Notebooks
+notebooks/.*
+notebooks/untested

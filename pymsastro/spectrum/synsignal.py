@@ -1,6 +1,7 @@
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
 
 import numpy as np
+import matplotlib.pyplot as plt
 
 from ..utils import lazyproperty_readonly
 
@@ -74,3 +75,28 @@ class SynSignal(object):
         without noise.
         """
         return np.sqrt(self.signal)
+
+    def plot(self):
+        """
+        Plots the signal and the signal with noise and the region where the
+        one sigma and three sigma regions are.
+        """
+        elements = self.signal.size
+        plt.fill_between(np.arange(elements),
+                         self.signal-self.noise,
+                         self.signal+self.noise,
+                         facecolor='green', alpha=0.3,
+                         label='1 sigma deviation')
+        plt.fill_between(np.arange(elements),
+                         self.signal-3*self.noise,
+                         self.signal+3*self.noise,
+                         facecolor='red', alpha=0.1,
+                         label='3 sigma deviation')
+        plt.scatter(np.arange(elements), self.signal_with_noise,
+                    label="measured signal")
+        plt.plot(np.arange(elements), self.signal, label="theoretical signal")
+        plt.title('Signal with Noise')
+        plt.ylabel('Counts')
+        plt.xlabel('Wavelength / Pixel')
+        plt.legend()
+        plt.show()

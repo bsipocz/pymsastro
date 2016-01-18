@@ -283,3 +283,28 @@ class SynSpectrum(object):
 
         plt.legend()
         plt.show()
+
+    def plot_signalsum(self):
+        """
+        Plots the signalsum and the signalsum with noise and the region where
+        the one sigma and three sigma regions are.
+        """
+        plt.fill_between(self.wavelengths,
+                         self.signalsum-self.noisequadsum,
+                         self.signalsum+self.noisequadsum,
+                         facecolor='green', alpha=0.3,
+                         label='1 sigma deviation')
+        plt.fill_between(self.wavelengths,
+                         self.signalsum-3*self.noisequadsum,
+                         self.signalsum+3*self.noisequadsum,
+                         facecolor='red', alpha=0.1,
+                         label='3 sigma deviation')
+        plt.scatter(self.wavelengths, self.signalsum_with_noise,
+                    label="measured signal")
+        plt.plot(self.wavelengths, self.signalsum,
+                 label="theoretical signal")
+        plt.title('Signalsum with Noise')
+        plt.ylabel('Counts')
+        plt.xlabel('Wavelength / Pixel')
+        plt.legend()
+        plt.show()
