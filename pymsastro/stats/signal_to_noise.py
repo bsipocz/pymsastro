@@ -3,7 +3,7 @@
 from abc import ABCMeta, abstractproperty
 
 import six
-from numpy import array, median, abs, isfinite
+from numpy import array, median, abs, isfinite, ndarray
 
 from ..utils.decorator_collection import lazyproperty_readonly
 
@@ -81,26 +81,38 @@ class SNR(object):
         if not hasattr(self, '_deleted'):
             # Delete masked pixel if it is a masked array
             if self._ignore_masked and hasattr(self._flux, 'mask'):
-                if self.verbose:
-                    print('Deleting masked values.')
-                self._flux = self._flux.data[~self._flux.mask]
+                self._delete_masked()
             elif hasattr(self._flux, 'mask'):
                 self._flux = self._flux.data
 
             # Delete pixel where the flux is zero.
             if self._ignore_zeros:
-                if self.verbose:
-                    print('Deleting values of 0.')
-                self._flux = self._flux[self._flux != 0]
+                self._delete_zeros()
 
             # Delete all NaNs and infs.
             if self._ignore_nan_inf:
-                if self.verbose:
-                    print('Deleting NaN and Inf values.')
-                self._flux = self._flux[isfinite(self._flux)]
+                self._delete_nan_inf()
 
             # Set deleted flag so it will not try to delete again.
             self._deleted = True
+
+    def _delete_masked(self):
+        # Delete masked pixel if it is a masked array
+        if self.verbose:
+            print('Deleting masked values.')
+        self._flux = self._flux.data[~self._flux.mask]
+
+    def _delete_zeros(self):
+        # Delete pixel where the flux is zero.
+        if self.verbose:
+            print('Deleting values of 0.')
+        self._flux = self._flux[self._flux != 0]
+
+    def _delete_nan_inf(self):
+        # Delete all NaNs and infs.
+        if self.verbose:
+            print('Deleting NaN and Inf values.')
+        self._flux = self._flux[isfinite(self._flux)]
 
     @abstractproperty
     def signal(self):
@@ -202,6 +214,24 @@ class RMSE_SNR(SNR):
         # Take the reference spectrum and pass all the other stuff to SNR
         self._reference = reference
         super(RMSE_SNR, self).__init__(*args, **kwargs)
+
+    def _delete_masked(self):
+        # Delete masked pixel in the reference before deleting them in flux
+        if isinstance(self._reference, ndarray):
+            self._reference = self._reference[~self._flux.mask]
+        super(RMSE_SNR, self)._delete_masked()
+
+    def _delete_zeros(self):
+        # Delete zeros in the reference before deleting them in flux
+        if isinstance(self._reference, ndarray):
+            self._reference = self._reference[self._flux != 0]
+        super(RMSE_SNR, self)._delete_zeros()
+
+    def _delete_nan_inf(self):
+        # Delete NaN and Infs in the reference before deleting them in flux
+        if isinstance(self._reference, ndarray):
+            self._reference = self._reference[isfinite(self._flux)]
+        super(RMSE_SNR, self)._delete_nan_inf()
 
     @property
     def signal(self):

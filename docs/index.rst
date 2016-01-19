@@ -3,7 +3,7 @@ Using ``it``
 ================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 3
 
 Reference/API
 =============
@@ -12,6 +12,12 @@ Reference/API
     :no-inheritance-diagram:
 
 .. automodapi:: pymsastro.spectrum
+    :no-inheritance-diagram:
+
+.. automodapi:: pymsastro.spectrum.synthetic
+    :no-inheritance-diagram:
+
+.. automodapi:: pymsastro.spectrum.synthetic.analyze
     :no-inheritance-diagram:
 
 .. automodapi:: pymsastro.stats

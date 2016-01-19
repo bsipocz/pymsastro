@@ -4,7 +4,5 @@
 This is an Astropy affiliated package.
 """
 
-from .synsignal import *
-from .synspectrum import *
-from .addsynspectra import *
-from . import analyze
+from .syntheticspectrumanalyse import *
+from .syntheticspectrumanalysefactory import *

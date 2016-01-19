@@ -25,8 +25,8 @@ def addSynSpectra(first, second, weighting=None, s_n_calculator=None,
             Needs to have exactly two elements, the first is the
             weighting factor for the first spectrum, the second is the
             weighting for the second.
-        - ``'optimal'`` :
-          Weight by inverse of (other signal times own variance)
+        - ``'optimal'`` : Weight by inverse of (other signal times own
+          variance)
         - ``'snr_squared'`` : Weight with squared signal to noise ratio
         - ``'ierr'`` : Weight by inverse error
         - ``'ivar'`` : Weight by inverse variance

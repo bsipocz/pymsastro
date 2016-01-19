@@ -283,6 +283,8 @@ def median_absolute_standard_deviation(value, reference, **kwargs):
 The relation between standard deviation and median absolute deviation requires
 a constant scale factor. This factor is approximatly 1.482602218505602.
 
+This one is not covered with tests!!!
+
 See also
 --------
 median_absolute_error
