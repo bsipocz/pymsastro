@@ -1,6 +1,6 @@
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
 
-from .weighting import weights_calc_spectrum, _normalize_weights
+from ..weighting import weights_calc_spectrum, _normalize_weights
 from . import SynSpectrum
 
 __all__ = ['addSynSpectra']

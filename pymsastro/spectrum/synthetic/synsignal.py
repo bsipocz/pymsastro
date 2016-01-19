@@ -3,7 +3,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from ..utils import lazyproperty_readonly
+from ...utils import lazyproperty_readonly
 
 __all__ = ['SynSignal']
 

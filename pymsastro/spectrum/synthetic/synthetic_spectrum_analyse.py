@@ -3,7 +3,7 @@
 from operator import itemgetter
 
 from .synthetic_spectrum import addSynSpec
-from ..stats import der_snr, snr_rmse
+from ...stats import der_snr, snr_rmse
 
 __all__ = ['SynSpecAddAnalyse']
 

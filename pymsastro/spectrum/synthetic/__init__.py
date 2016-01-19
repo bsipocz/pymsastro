@@ -4,5 +4,6 @@
 This is an Astropy affiliated package.
 """
 
-from . import synthetic
-from .weighting import *
+from .synsignal import *
+from .synspectrum import *
+from .addsynspectra import *

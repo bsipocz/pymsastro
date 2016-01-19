@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 from . import SynSignal
 
-from ..utils import lazyproperty_readonly
+from ...utils import lazyproperty_readonly
 
 __all__ = ['SynSpectrum']
 
