@@ -1,6 +1,7 @@
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
 
-from numpy import sum, sqrt, square
+from numpy import sqrt, square
+from numpy.ma import sum
 
 __all__ = ['sum_square', 'ss', 'sum_of_squares', 'root_sum_square']
 

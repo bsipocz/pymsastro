@@ -1,7 +1,8 @@
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
 
 
-from numpy import square, mean, sqrt
+from numpy import square, sqrt
+from numpy.ma import mean
 from scipy.stats import hmean, gmean
 
 __all__ = ['root_mean_square', 'rms',

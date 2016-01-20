@@ -7,4 +7,5 @@ This is an Astropy affiliated package.
 from .error import *
 from .mean import *
 from .sum import *
-from .signal_to_noise import *
+from . import signal_to_noise
+from . import rejection

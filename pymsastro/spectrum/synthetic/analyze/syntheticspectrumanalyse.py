@@ -5,7 +5,7 @@ from abc import ABCMeta, abstractmethod, abstractproperty
 import six
 
 from .. import addSynSpectra
-from ....stats import DER_SNR, RMSE_SNR
+from ....stats.signal_to_noise import DER_SNR, RMSE_SNR
 
 __all__ = ['AddSynSpectrumAnalyse',
            'AddSynSpectrumAnalyseSpectrum1',

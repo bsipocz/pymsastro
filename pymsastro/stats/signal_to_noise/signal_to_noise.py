@@ -4,10 +4,12 @@ from abc import ABCMeta, abstractproperty
 
 import six
 from numpy import array, median, abs, isfinite, ndarray
+# No need to import median from numpy.ma since we either discard the mask or
+# delete the masked values.
 
-from ..utils.decorator_collection import lazyproperty_readonly
+from ...utils.decorator_collection import lazyproperty_readonly
 
-from .error import rmse, rmse_rel
+from ..error import rmse, rmse_rel
 
 __all__ = ['SNR', 'DER_SNR', 'RMSE_SNR']
 

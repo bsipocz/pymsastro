@@ -1,6 +1,7 @@
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
 
-from numpy import mean, median, square, sqrt, sum
+from numpy import square, sqrt
+from numpy.ma import mean, median, sum
 
 from ..utils.decorator_collection import format_doc
 
