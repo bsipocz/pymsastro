@@ -98,7 +98,10 @@ def reject_sigma_clip(data, sigma=3, sigma_lower=None, sigma_upper=None,
     stdfunc : ``callable``, optional
         The function that calculates the standard deviation from the calculated
         center (from ``cenfunc``).
-        Default is `~pymsastro.stats.median_absolute_standard_deviation`
+        Default is `~pymsastro.stats.median_absolute_standard_deviation`.
+
+    others :
+        see `astropy.stats.sigma_clip`
 
     Returns
     -------
@@ -111,8 +114,12 @@ def reject_sigma_clip(data, sigma=3, sigma_lower=None, sigma_upper=None,
 
     Notes
     -----
-    Only ``pymsastro.stats.error`` functions are allowed that take an ``axis``
-    argument.
+    Only ``pymsastro.stats.error`` functions that take an ``axis`` argument
+    are allowed.
+
+    .. warning:: This function is extremly RAM expensive for large arrays, you
+                 may consider splitting the array first and then merge it again
+                 later!
 
     Recommended is:
 

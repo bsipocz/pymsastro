@@ -3,38 +3,18 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
-import numpy as np
+from ...utils import format_doc
 from abc import ABCMeta, abstractproperty, abstractmethod
 from copy import deepcopy
-
-# from ..utils.compat import ignored
 from astropy import log
 from astropy.units import Unit, Quantity
 import six
+import numpy as np
 
 __all__ = ['MissingDataAssociationException',
            'IncompatibleUncertaintiesException', 'NDUncertainty',
            'StdDevUncertainty', 'UnknownUncertainty']
 
-try:
-    from ..utils import format_doc
-except ImportError:
-    # TODO: Delete this and rebase if #4242 is merged.
-    def format_doc(docstring, *args, **kwargs):
-        def set_docstring(func):
-            if not isinstance(docstring, six.string_types):
-                doc = docstring.__doc__
-            elif docstring != 'self':
-                doc = docstring
-            else:
-                doc = func.__doc__
-                func.__doc__ = None
-            if not doc:
-                raise ValueError
-            kwargs['original_doc'] = func.__doc__ or ''
-            func.__doc__ = doc.format(*args, **kwargs)
-            return func
-        return set_docstring
 
 # Make a placeholder for the different uncertainty propagation methods.
 _propagate_doc = """

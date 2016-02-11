@@ -1,8 +1,6 @@
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
 
-from ..numpy_convenience import (numpyAxisStringToNumber, numpyIsBroadcastable,
-                                 numpyOffset, numpySliceWithReference,
-                                 numpyOffsetWithReference, numpyIsDtype)
+from ..numpy_convenience import *
 
 from pytest import raises
 import numpy as np
@@ -584,3 +582,13 @@ def test_nc_offset_reference():
     assert offsetted_array.shape == (1, 5)
     reference = np.array([[0, 0, 1, 1, 1]])
     np.testing.assert_array_equal(offsetted_array, reference)
+
+
+def test_nc_2dstack():
+    array1 = np.ones((3, 3))
+    array2 = np.ones((3, 3)) * 2
+    array3 = np.ones((3, 3)) * 3
+    stack = numpy2DStack([array1, array2, array3])
+    np.testing.assert_array_equal(stack[:, :, 0], array1)
+    np.testing.assert_array_equal(stack[:, :, 1], array2)
+    np.testing.assert_array_equal(stack[:, :, 2], array3)

@@ -4,7 +4,7 @@ import numpy as np
 
 __all__ = ['numpyAxisStringToNumber', 'numpyIsBroadcastable', 'numpyOffset',
            'numpySliceWithReference', 'numpyOffsetWithReference',
-           'numpyIsDtype']
+           'numpyIsDtype', 'numpy2DStack']
 
 
 def numpyAxisStringToNumber(axis):
@@ -213,6 +213,9 @@ def numpyOffset(array, offset, newShape=0, fill=0):
     Offsets an `numpy.ndarray` by inserting it into an filled array with a
     new shape.
 
+    .. warning:: This function is as faster but more limited than
+                 `numpy.lib.pad`.
+
     Parameters
     ----------
     array : `numpy.ndarray`
@@ -356,3 +359,37 @@ def numpyOffsetWithReference(array, offset, newShape, refshape, fill=0):
         newShape_tmp[dim] = 1
 
     return numpyOffset(array, offset_tmp, newShape_tmp, fill)
+
+
+def numpy2DStack(arrays):
+    """
+    Stacks 2D `numpy.ndarray` into a 3D `numpy.ndarray`
+
+    Parameters
+    ----------
+    arrays : ``iterable`` of `numpy.ndarray`
+        The arrays that should be stacked. Must all be 2D and have the same
+        shape. Don't allows `numpy.ma.MaskedArray`
+
+    Returns
+    -------
+    stacked_arrays: `numpy.ndarray`
+        The 2D `arrays` stacked as 3D `numpy.ndarray`
+
+    Notes
+    -----
+    Can be quite memory extensive for many big arrays.
+
+    .. warning:: This function is as fast and as memory expensive as
+                 `numpy.dstack` and `numpy.ma.dstack` but I'll keep it as
+                 easy access to these functions.
+
+    See also
+    --------
+    numpy.dstack
+    """
+    finalshape = (arrays[0].shape[0], arrays[0].shape[1], len(arrays))
+    stack = np.empty(finalshape, dtype=arrays[0].dtype)
+    for i in range(len(arrays)):
+        stack[:, :, i] = arrays[i]
+    return stack

@@ -5,3 +5,4 @@ This is an Astropy affiliated package.
 """
 
 from .convolution_with_mask import *
+from .interpolate_mask import *

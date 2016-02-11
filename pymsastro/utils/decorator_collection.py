@@ -7,14 +7,13 @@ __all__ = ['lazyproperty_readonly', 'format_doc']
 
 class lazyproperty_readonly(property):
     """
-    Like `~astropy.utils.decorators.lazyproperty` in `astropy.utils.decorators`
-    but does not setup any setter or deleter - they are not possible with this
-    decorator.
+    Like `astropy.utils.decorators.lazyproperty` but does not setup any setter
+    or deleter - they are not possible with this decorator.
 
     Decorating a function with `lazyproperty_readonly` will calculate the value
-    only if the value was not calculated before and saved. The calculated value
-    is saved in the objects ``__dict__`` with the same name as the function
-    that is decorated.
+    only if the value was *not* calculated before and saved. The calculated
+    value is saved in the objects ``__dict__`` with the same name as the
+    function that is decorated.
     """
 
     def __init__(self, fget, fset=None, fdel=None, doc=None):
@@ -40,7 +39,6 @@ class lazyproperty_readonly(property):
 
 def format_doc(docstring, *args, **kwargs):
     """
-
     Going to be in `astropy` ... eventually ...
 
     Replaces the docstring of the decorated object and then formats it.

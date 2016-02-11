@@ -17,3 +17,4 @@ if not _ASTROPY_SETUP_:
     from . import stats
     from . import utils
     from . import image
+    from . import formula

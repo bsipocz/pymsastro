@@ -4,7 +4,7 @@
 This is an Astropy affiliated package.
 """
 
-from . import compat
-from .ndimage import *
-from .ndspectrum import *
-from .galaxylines import *
+from . import redshift
+from . import wavelength
+from . import math
+from . import special_relativity

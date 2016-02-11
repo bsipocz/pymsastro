@@ -1,41 +1,17 @@
-
-Using ``it``
-================
-
-.. toctree::
-   :maxdepth: 3
-
-   untested
-
-Reference/API
+Documentation
 =============
 
-.. automodapi:: pymsastro.convolution
-    :no-inheritance-diagram:
+This is an affiliated package for the AstroPy package. The documentation for
+this package is here:
 
-.. automodapi:: pymsastro.image
-    :no-inheritance-diagram:
+.. toctree::
+  :maxdepth: 2
 
-.. automodapi:: pymsastro.image.compat
-    :no-inheritance-diagram:
+  pymsastro/index.rst
 
-.. automodapi:: pymsastro.spectrum
-    :no-inheritance-diagram:
-
-.. automodapi:: pymsastro.spectrum.synthetic
-    :no-inheritance-diagram:
-
-.. automodapi:: pymsastro.spectrum.synthetic.analyze
-    :no-inheritance-diagram:
-
-.. automodapi:: pymsastro.stats
-    :no-inheritance-diagram:
-
-.. automodapi:: pymsastro.stats.signal_to_noise
-    :no-inheritance-diagram:
-
-.. automodapi:: pymsastro.stats.rejection
-    :no-inheritance-diagram:
-
-.. automodapi:: pymsastro.utils
-    :no-inheritance-diagram:
+.. note:: The layout of this directory is simply a suggestion.  To follow
+          traditional practice, do *not* edit this page, but instead place
+          all documentation for the affiliated package inside ``packagename/``.
+          The traditional practice was intended to allow the affiliated
+          package to eventually be merged into the main astropy package.
+          You can follow this practice or choose your own layout.

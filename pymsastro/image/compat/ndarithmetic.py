@@ -4,43 +4,13 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
+from .nduncertainty import NDUncertainty
+from ...utils import format_doc
+from astropy.units import dimensionless_unscaled
 from copy import deepcopy
-
 import numpy as np
 
-from .nduncertainty import NDUncertainty
-from astropy.units import dimensionless_unscaled
-import six
-
 __all__ = ['NDArithmeticMixin']
-
-
-# TODO: General question of implementing an Operator class #3861? (embray)
-# Maybe a bit too big for these changes.
-
-try:
-    from .utils import format_doc
-except ImportError:
-    # TODO: Delete this and rebase if #4242 is merged.
-    def format_doc(docstring, *args, **kwargs):
-        def set_docstring(func):
-            if not isinstance(docstring, six.string_types):
-                doc = docstring.__doc__
-            elif docstring != 'self':
-                doc = docstring
-            else:
-                doc = func.__doc__
-                func.__doc__ = None
-            if not doc:
-                raise ValueError
-            kwargs['original_doc'] = func.__doc__ or ''
-            func.__doc__ = doc.format(*args, **kwargs)
-            return func
-        return set_docstring
-
-# TODO: Maybe not nice to pollute globals but I felt the same way about
-# polluting the class namespace and this way potential subclasses may or refuse
-# to pull this docstring into their class as well.
 
 # Docstring templates for add, subtract, multiply, divide methods.
 _arit_doc = """
@@ -642,14 +612,3 @@ class NDArithmeticMixin(object):
     def ic_division(cls, operand1, operand2, **kwargs):
         operand1 = cls(operand1)
         return operand1.divide(operand2, **kwargs)
-
-    # TODO: Only temporary since uncertainty setter was changed during refactor
-    @property
-    def uncertainty(self):
-        return self._uncertainty
-
-    @uncertainty.setter
-    def uncertainty(self, value):
-        if isinstance(value, NDUncertainty):
-            value.parent_nddata = self
-        self._uncertainty = value

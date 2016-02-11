@@ -3,7 +3,7 @@
 __all__ = ['dictKeysInDict', 'dictKeysInDictFirst', 'dictKeysInDictValueFirst']
 
 
-def dictKeysInDict(keys, dictionary):
+def dictKeysInDict(dictionary, keys):
     """
     Checks if any of a list of keys is in the dict and returns which are.
 
@@ -36,7 +36,7 @@ def dictKeysInDict(keys, dictionary):
     return found
 
 
-def dictKeysInDictFirst(keys, dictionary):
+def dictKeysInDictFirst(dictionary, keys):
     """
     Identical to :func:`dictKeysInDict` but only returns the first found
     key.
@@ -52,10 +52,10 @@ def dictKeysInDictFirst(keys, dictionary):
     a key in ``dictionary`` is the first found key. The order of the
     ``dictionary`` is ignored (because it is mostly unordered).
     """
-    return dictKeysInDict(keys, dictionary)[0]
+    return dictKeysInDict(dictionary, keys)[0]
 
 
-def dictKeysInDictValueFirst(keys, dictionary):
+def dictKeysInDictValueFirst(dictionary, keys):
     """
     Identical to :func:`dictKeysInDict` but returns the
     associated value of the first found key.
@@ -71,4 +71,4 @@ def dictKeysInDictValueFirst(keys, dictionary):
     a key in ``dictionary`` is the first found key. The order of the
     ``dictionary`` is ignored (because it is mostly unordered).
     """
-    return dictionary[dictKeysInDictFirst(keys, dictionary)]
+    return dictionary[dictKeysInDictFirst(dictionary, keys)]

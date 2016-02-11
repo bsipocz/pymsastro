@@ -36,21 +36,21 @@ def root_mean_square(value, **kwargs):
 
 def harmonic_mean(value, *args, **kwargs):
     """
-    Wrapper for `scipy.stats.hmean`
+    Wrapper for :func:`scipy.stats.hmean`
     """
     return hmean(value, *args, **kwargs)
 
 
 def geometric_mean(value, *args, **kwargs):
     """
-    Wrapper for `scipy.stats.gmean`
+    Wrapper for :func:`scipy.stats.gmean`
     """
     return gmean(value, *args, **kwargs)
 
 
 def arithmetic_mean(value, *args, **kwargs):
     """
-    Wrapper for `numpy.mean`
+    Wrapper for :func:`numpy.mean`
     """
     return mean(value, *args, **kwargs)
 

@@ -1,6 +1,9 @@
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
 
-from json import dump, load
+try:
+    from ujson import dump, load
+except ImportError:
+    from json import dump, load
 
 __all__ = ['json_write', 'json_append', 'json_read']
 

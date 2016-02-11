@@ -5,7 +5,6 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
 from abc import ABCMeta, abstractproperty, abstractmethod
-
 import six
 
 __all__ = ['NDDataBase']
